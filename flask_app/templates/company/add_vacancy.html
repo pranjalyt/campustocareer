@@ -1,0 +1,22 @@
+{% extends 'company/base.html' %}
+{% block page_title %}Post New Vacancy{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm" style="max-width:800px;">
+  <div class="card-body p-4">
+    <form method="POST" enctype="multipart/form-data">
+        
+    <div class="row">
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Job Title</label><input type="text" name="job_title" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Openings</label><input type="number" name="openings" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Salary (Monthly)</label><input type="text" name="salary" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Job Location</label><input type="text" name="location" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Apply Date</label><input type="date" name="apply_date" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Last Date</label><input type="date" name="last_date" class="form-control" required></div>
+        <div class="col-12 mb-3"><label class="small font-weight-bold">Job Description</label><textarea name="description" rows="5" class="form-control" required></textarea></div>
+    </div>
+
+        <button type="submit" class="btn btn-primary mt-3 px-4">Save Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

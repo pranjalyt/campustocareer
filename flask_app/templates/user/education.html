@@ -1,0 +1,41 @@
+{% extends 'user/base.html' %}
+{% block page_title %}Education Details{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm mb-4">
+  <div class="card-body p-4">
+    {% if edu %}
+    <h5 class="mb-3">Secondary Education (10th)</h5>
+    <div class="row mb-4 bg-light p-3 rounded mx-0">
+        <div class="col-md-3"><strong>Board:</strong><br>{{ edu.SecondaryBoard }}</div>
+        <div class="col-md-3"><strong>Year:</strong><br>{{ edu.SecondaryBoardyop }}</div>
+        <div class="col-md-3"><strong>Percentage:</strong><br>{{ edu.SecondaryBoardper }}%</div>
+        <div class="col-md-3"><strong>CGPA:</strong><br>{{ edu.SecondaryBoardcgpa }}</div>
+    </div>
+    <h5 class="mb-3">Senior Secondary (12th)</h5>
+    <div class="row mb-4 bg-light p-3 rounded mx-0">
+        <div class="col-md-3"><strong>Board:</strong><br>{{ edu.SSecondaryBoard }}</div>
+        <div class="col-md-3"><strong>Year:</strong><br>{{ edu.SSecondaryBoardyop }}</div>
+        <div class="col-md-3"><strong>Percentage:</strong><br>{{ edu.SSecondaryBoardper }}%</div>
+        <div class="col-md-3"><strong>CGPA:</strong><br>{{ edu.SSecondaryBoardcgpa }}</div>
+    </div>
+    <h5 class="mb-3">Graduation</h5>
+    <div class="row mb-4 bg-light p-3 rounded mx-0">
+        <div class="col-md-3"><strong>University:</strong><br>{{ edu.GraUni }}</div>
+        <div class="col-md-3"><strong>Year:</strong><br>{{ edu.GraUniyop }}</div>
+        <div class="col-md-3"><strong>Percentage:</strong><br>{{ edu.GraUnidper }}%</div>
+        <div class="col-md-3"><strong>CGPA:</strong><br>{{ edu.GraUnicgpa }}</div>
+    </div>
+    
+    <div class="mt-4">
+        <a href="{{ url_for('user_edit_education') }}" class="btn btn-primary px-4"><i class="fas fa-edit mr-2"></i>Edit Education Info</a>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <h4 class="text-muted">No education details found</h4>
+        <p>You haven't added your qualification records yet.</p>
+        <a href="{{ url_for('user_add_education') }}" class="btn btn-primary mt-3"><i class="fas fa-plus mr-2"></i>Add Education</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

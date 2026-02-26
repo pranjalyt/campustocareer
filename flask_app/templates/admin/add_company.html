@@ -1,0 +1,20 @@
+{% extends 'admin/base.html' %}
+{% block page_title %}Add New Company{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm" style="max-width:800px;">
+  <div class="card-body p-4">
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-6 mb-3"><label class="small font-weight-bold">Company Name</label><input type="text" name="company_name" class="form-control" required></div>
+            <div class="col-md-6 mb-3"><label class="small font-weight-bold">Contact Person</label><input type="text" name="contact_person" class="form-control" required></div>
+            <div class="col-md-6 mb-3"><label class="small font-weight-bold">Website URL</label><input type="text" name="company_url" class="form-control"></div>
+            <div class="col-md-6 mb-3"><label class="small font-weight-bold">Mobile</label><input type="number" name="mobile" class="form-control" required></div>
+            <div class="col-12 mb-3"><label class="small font-weight-bold">Headquarters Address</label><textarea name="address" class="form-control" rows="2" required></textarea></div>
+            <div class="col-md-6 mb-4"><label class="small font-weight-bold">Login Email</label><input type="email" name="email" class="form-control" required></div>
+            <div class="col-md-6 mb-4"><label class="small font-weight-bold">Default Password</label><input type="text" name="password" class="form-control" value="12345" required></div>
+        </div>
+        <button type="submit" class="btn btn-primary px-5">Register Company</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

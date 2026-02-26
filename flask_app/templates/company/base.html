@@ -1,0 +1,43 @@
+{% extends 'dash_base.html' %}
+{% set portal_name = 'Company Portal' %}
+{% set sidebar_home = url_for('company_dashboard') %}
+{% set logout_url = url_for('company_logout') %}
+{% set current_user_name = session.company_name %}
+{% set current_user_initial = session.company_name[0]|upper if session.company_name else 'C' %}
+
+{% block sidebar %}
+<span class="nav-section">Main</span>
+<a href="{{ url_for('company_dashboard') }}" class="{{ 'active' if request.endpoint=='company_dashboard' }}"><i
+        class="fas fa-tachometer-alt"></i> Dashboard</a>
+<span class="nav-section">Profile</span>
+<a href="{{ url_for('company_profile') }}" class="{{ 'active' if request.endpoint=='company_profile' }}"><i
+        class="fas fa-building"></i> Company Profile</a>
+<a href="{{ url_for('company_change_password') }}"
+    class="{{ 'active' if request.endpoint=='company_change_password' }}"><i class="fas fa-lock"></i> Change
+    Password</a>
+<span class="nav-section">Vacancies</span>
+<a href="{{ url_for('company_add_vacancy') }}" class="{{ 'active' if request.endpoint=='company_add_vacancy' }}"><i
+        class="fas fa-plus-circle"></i> Post Vacancy</a>
+<a href="{{ url_for('company_manage_vacancies') }}"
+    class="{{ 'active' if request.endpoint=='company_manage_vacancies' }}"><i class="fas fa-list"></i> Manage
+    Vacancies</a>
+<span class="nav-section">Applications</span>
+<a href="{{ url_for('company_all_applications') }}"
+    class="{{ 'active' if request.endpoint=='company_all_applications' }}"><i class="fas fa-inbox"></i> All
+    Applications</a>
+<a href="{{ url_for('company_new_applications') }}"
+    class="{{ 'active' if request.endpoint=='company_new_applications' }}"><i class="fas fa-bell"></i> New</a>
+<a href="{{ url_for('company_sorted_applications') }}"
+    class="{{ 'active' if request.endpoint=='company_sorted_applications' }}"><i class="fas fa-filter"></i> Sort
+    Listed</a>
+<a href="{{ url_for('company_selected_applications') }}"
+    class="{{ 'active' if request.endpoint=='company_selected_applications' }}"><i class="fas fa-check-circle"></i>
+    Selected</a>
+<a href="{{ url_for('company_rejected_applications') }}"
+    class="{{ 'active' if request.endpoint=='company_rejected_applications' }}"><i class="fas fa-times-circle"></i>
+    Rejected</a>
+<span class="nav-section">Site</span>
+<a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Public Site</a>
+{% endblock %}
+
+{% block content %}{% endblock %}

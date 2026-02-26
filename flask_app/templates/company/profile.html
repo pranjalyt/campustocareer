@@ -1,0 +1,24 @@
+{% extends 'company/base.html' %}
+{% block page_title %}Company Profile{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm" style="max-width:800px;">
+  <div class="card-body p-4">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6 mb-3"><label class="font-weight-bold small">Company Name</label><input type="text" name="company_name" class="form-control" value="{{ comp.CompanyName }}" required></div>
+            <div class="col-md-6 mb-3"><label class="font-weight-bold small">Contact Person</label><input type="text" name="contact_person" class="form-control" value="{{ comp.ContactPerson }}" required></div>
+            <div class="col-md-6 mb-3"><label class="font-weight-bold small">Website URL</label><input type="text" name="company_url" class="form-control" value="{{ comp.CompanyUrl }}"></div>
+            <div class="col-md-6 mb-3"><label class="font-weight-bold small">Mobile</label><input type="number" name="mobile" class="form-control" value="{{ comp.MobileNumber }}" required></div>
+            <div class="col-12 mb-3"><label class="font-weight-bold small">Headquarters Address</label><textarea name="address" class="form-control" rows="2" required>{{ comp.CompanyAddress }}</textarea></div>
+            <div class="col-12 mb-4"><label class="font-weight-bold small">Company Logo</label>
+                <input type="file" name="logo" class="form-control-file border p-2 rounded w-100" accept="image/*">
+                {% if comp.CompanyLogo %}
+                <div class="mt-2"><img src="{{ url_for('static', filename='uploads/' + comp.CompanyLogo) }}" height="60" class="rounded shadow-sm"></div>
+                {% endif %}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary px-4">Save Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

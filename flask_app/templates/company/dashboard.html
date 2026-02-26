@@ -1,0 +1,26 @@
+{% extends 'company/base.html' %}
+{% block page_title %}Employer Dashboard{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-4 mb-4"><div class="stat-card bg-white"><div class="icon bg-primary text-white"><i class="fas fa-clipboard-list"></i></div>
+      <div class="label">Total Job Postings</div><div class="value">{{ total_vac }}</div>
+  </div></div>
+  <div class="col-md-4 mb-4"><div class="stat-card bg-white"><div class="icon bg-success text-white"><i class="fas fa-inbox"></i></div>
+      <div class="label">Total Applications</div><div class="value">{{ total_apps }}</div>
+  </div></div>
+  <div class="col-md-4 mb-4"><div class="stat-card bg-white"><div class="icon bg-warning text-white"><i class="fas fa-bell"></i></div>
+      <div class="label">New Applications</div><div class="value">{{ new_apps }}</div>
+  </div></div>
+</div>
+<div class="row mt-2">
+  <div class="col-md-4 mb-4"><div class="stat-card bg-white"><div class="icon text-white" style="background:#8b5cf6"><i class="fas fa-filter"></i></div>
+      <div class="label">Sort Listed</div><div class="value">{{ sorted_apps }}</div>
+  </div></div>
+  <div class="col-md-4 mb-4"><div class="stat-card bg-white"><div class="icon text-white" style="background:#10b981"><i class="fas fa-check-circle"></i></div>
+      <div class="label">Selected</div><div class="value">{{ selected_apps }}</div>
+  </div></div>
+  <div class="col-md-4 mb-4"><div class="stat-card bg-white"><div class="icon text-white" style="background:#ef4444"><i class="fas fa-times-circle"></i></div>
+      <div class="label">Rejected</div><div class="value">{{ rejected_apps }}</div>
+  </div></div>
+</div>
+{% endblock %}

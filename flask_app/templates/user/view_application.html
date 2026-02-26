@@ -1,0 +1,36 @@
+{% extends 'user/base.html' %}
+{% block page_title %}Application Status{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="font-weight-bold">{{ app.JobTitle }} <span class="badge badge-light ml-2">{{ app.CompanyName }}</span></h5>
+        <div class="text-muted small mb-4">Applied on: {{ app.ApplyDate }}</div>
+        
+        <h6 class="border-bottom pb-2 mb-3">Status</h6>
+        {% if app.Status == 'Selected' %}
+        <div class="alert alert-success"><i class="fas fa-check-circle mr-2"></i> Congratulations! You have been <strong>Selected</strong> for this role.</div>
+        {% elif app.Status == 'Rejected' %}
+        <div class="alert alert-danger"><i class="fas fa-times-circle mr-2"></i> Unfortunately, your application was <strong>Rejected</strong>.</div>
+        {% elif app.Status == 'Sorted' %}
+        <div class="alert alert-info"><i class="fas fa-filter mr-2"></i> You have been <strong>Shortlisted</strong>! The company will contact you soon.</div>
+        {% else %}
+        <div class="alert alert-warning"><i class="fas fa-clock mr-2"></i> Your application is still <strong>Under Review</strong>.</div>
+        {% endif %}
+        
+        {% if msgs %}
+        <h6 class="border-bottom pb-2 mb-3 mt-4">Messages from HR</h6>
+        <ul class="list-group list-group-flush mb-4">
+            {% for m in msgs %}
+            <li class="list-group-item px-0">
+                <div class="d-flex justify-content-between">
+                    <strong>{{ m.Status }}</strong>
+                    <small class="text-muted">{{ m.ResponseDate }}</small>
+                </div>
+                <p class="mb-0 mt-1">{{ m.Message }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

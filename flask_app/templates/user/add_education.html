@@ -1,0 +1,35 @@
+{% extends 'user/base.html' %}
+{% block page_title %}{% if edu %}Edit{% else %}Add{% endif %} Education Details{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm" style="max-width:900px;">
+  <div class="card-body p-4">
+    <form method="POST">
+        <h6 class="text-primary font-weight-bold mb-3 border-bottom pb-2">10th Standard</h6>
+        <div class="row">
+            <div class="col-md-3 mb-3"><label class="small text-muted">Board Name</label><input type="text" name="sec_board" class="form-control form-control-sm" value="{{ edu.SecondaryBoard if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">Passing Year</label><input type="text" name="sec_yop" class="form-control form-control-sm" value="{{ edu.SecondaryBoardyop if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">Percentage</label><input type="text" name="sec_per" class="form-control form-control-sm" value="{{ edu.SecondaryBoardper if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">CGPA</label><input type="text" name="sec_cgpa" class="form-control form-control-sm" value="{{ edu.SecondaryBoardcgpa if edu else '' }}"></div>
+        </div>
+        
+        <h6 class="text-primary font-weight-bold mb-3 mt-3 border-bottom pb-2">12th Standard</h6>
+        <div class="row">
+            <div class="col-md-3 mb-3"><label class="small text-muted">Board Name</label><input type="text" name="ssec_board" class="form-control form-control-sm" value="{{ edu.SSecondaryBoard if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">Passing Year</label><input type="text" name="ssec_yop" class="form-control form-control-sm" value="{{ edu.SSecondaryBoardyop if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">Percentage</label><input type="text" name="ssec_per" class="form-control form-control-sm" value="{{ edu.SSecondaryBoardper if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">CGPA</label><input type="text" name="ssec_cgpa" class="form-control form-control-sm" value="{{ edu.SSecondaryBoardcgpa if edu else '' }}"></div>
+        </div>
+        
+        <h6 class="text-primary font-weight-bold mb-3 mt-3 border-bottom pb-2">Graduation</h6>
+        <div class="row">
+            <div class="col-md-3 mb-3"><label class="small text-muted">University</label><input type="text" name="gra_uni" class="form-control form-control-sm" value="{{ edu.GraUni if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">Passing Year</label><input type="text" name="gra_yop" class="form-control form-control-sm" value="{{ edu.GraUniyop if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">Percentage</label><input type="text" name="gra_per" class="form-control form-control-sm" value="{{ edu.GraUnidper if edu else '' }}" required></div>
+            <div class="col-md-3 mb-3"><label class="small text-muted">CGPA</label><input type="text" name="gra_cgpa" class="form-control form-control-sm" value="{{ edu.GraUnicgpa if edu else '' }}"></div>
+        </div>
+
+        <button class="btn btn-primary px-4 mt-4">Save Information</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'admin/base.html' %}
+{% block page_title %}Registered Candidates{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm"><div class="card-body">
+<table class="table table-hover align-middle mb-0">
+  <thead class="bg-light"><tr><th>Student ID</th><th>Name</th><th>Email</th><th>Gender</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for row in users %}
+    <tr>
+    <td>{{ row.StudentID }}</td>
+    <td>{{ row.FullName }}</td>
+    <td>{{ row.Email }}</td>
+    <td>{{ row.Gender }}</td>
+    <td><a href="{{ url_for('admin_view_user', user_id=row.ID) }}" class="btn btn-sm btn-primary">Profile</a></td>
+    </tr>
+    {% else %}
+    <tr><td colspan="100%" class="text-center py-4 text-muted">No records found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div></div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}{{ job.JobTitle }} | Campus to Career{% endblock %}
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4">
+                        <h2 class="font-weight-bold mb-1">{{ job.JobTitle }}</h2>
+                        <p class="text-muted"><i class="fas fa-building mr-1 text-primary"></i>{{ job.CompanyName }}</p>
+                        <div class="row mb-3">
+                            <div class="col-sm-6"><span class="badge badge-light border p-2 mr-2"><i
+                                        class="fas fa-rupee-sign text-primary mr-1"></i>{{ job.MonthlySalary
+                                    }}/Month</span></div>
+                            <div class="col-sm-6"><span class="badge badge-light border p-2"><i
+                                        class="fas fa-map-marker-alt text-primary mr-1"></i>{{ job.JobLocation }}</span>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-sm-6"><small class="text-muted"><i class="fas fa-users mr-1"></i> Openings:
+                                    <strong>{{ job.NoofOpenings }}</strong></small></div>
+                            <div class="col-sm-6"><small class="text-muted"><i class="fas fa-calendar mr-1"></i> Last
+                                    Date: <strong>{{ job.LastDate }}</strong></small></div>
+                        </div>
+                        <h5 class="font-weight-bold mb-3">Job Description</h5>
+                        <div class="p-3 bg-light rounded" style="white-space:pre-line;">{{ job.JobDescriptions }}</div>
+                        <div class="mt-4">
+                            {% if session.user_id %}
+                            <a href="{{ url_for('user_apply_job', job_id=job.ID) }}"
+                                class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-paper-plane mr-2"></i>Apply Now
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('user_login') }}" class="btn btn-primary btn-lg px-5">Login to Apply</a>
+                            {% endif %}
+                            <a href="{{ url_for('jobs_listed') }}" class="btn btn-outline-secondary btn-lg ml-2">Back to
+                                Jobs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-primary text-white font-weight-bold">Company Info</div>
+                    <div class="card-body">
+                        <h5>{{ job.CompanyName }}</h5>
+                        <p class="small text-muted mb-1"><i class="fas fa-globe mr-1"></i>{{ job.CompanyUrl }}</p>
+                        <p class="small text-muted mb-1"><i class="fas fa-map-marker-alt mr-1"></i>{{ job.CompanyAddress
+                            }}</p>
+                        <p class="small text-muted"><i class="fas fa-phone mr-1"></i>{{ job.CompMobile }}</p>
+                    </div>
+                </div>
+                <div class="card border-0 shadow-sm mt-3">
+                    <div class="card-body text-center">
+                        <i class="fas fa-clock fa-2x text-primary mb-2"></i>
+                        <p class="mb-1 font-weight-bold">Application Deadline</p>
+                        <h4 class="text-danger">{{ job.LastDate }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

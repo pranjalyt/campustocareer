@@ -1,0 +1,18 @@
+{% extends 'user/base.html' %}
+{% block page_title %}Student Dashboard{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon bg-primary text-white"><i class="fas fa-briefcase"></i></div>
+      <div class="label">Total Jobs</div><div class="value">{{ total_vacancies }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon bg-success text-white"><i class="fas fa-paper-plane"></i></div>
+      <div class="label">Total Applied</div><div class="value">{{ total_applied }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon bg-warning text-white"><i class="fas fa-calendar-day"></i></div>
+      <div class="label">Applied Today</div><div class="value">{{ today_applied }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon bg-info text-white"><i class="fas fa-calendar-week"></i></div>
+      <div class="label">Applied Last 7 Days</div><div class="value">{{ week_applied }}</div>
+  </div></div>
+</div>
+{% endblock %}

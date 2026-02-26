@@ -1,0 +1,28 @@
+{% extends 'dash_base.html' %}
+{% set portal_name = 'User Portal' %}
+{% set sidebar_home = url_for('user_dashboard') %}
+{% set logout_url = url_for('user_logout') %}
+{% set current_user_name = session.user_name %}
+{% set current_user_initial = session.user_name[0]|upper if session.user_name else 'U' %}
+
+{% block sidebar %}
+<span class="nav-section">Main</span>
+<a href="{{ url_for('user_dashboard') }}" class="{{ 'active' if request.endpoint=='user_dashboard' }}"><i
+        class="fas fa-tachometer-alt"></i> Dashboard</a>
+<span class="nav-section">Profile</span>
+<a href="{{ url_for('user_profile') }}" class="{{ 'active' if request.endpoint=='user_profile' }}"><i
+        class="far fa-user"></i> My Profile</a>
+<a href="{{ url_for('user_education') }}" class="{{ 'active' if 'education' in request.endpoint }}"><i
+        class="fas fa-graduation-cap"></i> Education</a>
+<a href="{{ url_for('user_change_password') }}" class="{{ 'active' if request.endpoint=='user_change_password' }}"><i
+        class="fas fa-lock"></i> Change Password</a>
+<span class="nav-section">Jobs</span>
+<a href="{{ url_for('user_view_jobs') }}" class="{{ 'active' if request.endpoint=='user_view_jobs' }}"><i
+        class="fas fa-briefcase"></i> Browse Jobs</a>
+<a href="{{ url_for('user_applications') }}" class="{{ 'active' if request.endpoint=='user_applications' }}"><i
+        class="fas fa-file-alt"></i> My Applications</a>
+<span class="nav-section">Site</span>
+<a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Public Site</a>
+{% endblock %}
+
+{% block content %}{% endblock %}

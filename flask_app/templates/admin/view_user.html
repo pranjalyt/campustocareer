@@ -1,0 +1,60 @@
+{% extends 'admin/base.html' %}
+{% block page_title %}Candidate Profile{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-4 mb-4">
+        <div class="card border-0 shadow-sm p-4 text-center">
+            {% if user.Image %}
+            <img src="{{ url_for('static', filename='uploads/' + user.Image) }}" class="mx-auto mb-3 rounded-circle shadow-sm" style="width:100px; height:100px; object-fit:cover;">
+            {% else %}
+            <div class="bg-primary text-white mx-auto rounded-circle d-flex align-items-center justify-content-center mb-3 font-weight-bold" style="width:100px; height:100px; font-size:2rem;">{{ user.FullName[0] }}</div>
+            {% endif %}
+            <h5 class="font-weight-bold">{{ user.FullName }}</h5>
+            <div class="badge badge-light border mb-3">ID: {{ user.StudentID }}</div>
+            <div class="text-left small bg-light p-3 rounded">
+                <div class="mb-2"><strong>Email:</strong> {{ user.Email }}</div>
+                <div class="mb-2"><strong>Mobile:</strong> {{ user.MobileNumber }}</div>
+                <div class="mb-2"><strong>Gender:</strong> {{ user.Gender }}</div>
+                <div class="mb-2"><strong>DOB:</strong> {{ user.DOB }}</div>
+            </div>
+            <form action="{{ url_for('admin_delete_user', user_id=user.ID) }}" method="POST"><button onclick="return confirm('Delete this user?');" class="btn btn-outline-danger btn-sm btn-block mt-3"><i class="fas fa-trash mr-1"></i> Delete Candidate</button></form>
+        </div>
+    </div>
+    <div class="col-md-8 mb-4">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white font-weight-bold">Academic Record</div>
+            <div class="card-body p-0">
+                {% if edu %}
+                <table class="table mb-0 text-center">
+                    <thead class="bg-light small"><tr><th>Level</th><th>Board/Uni</th><th>Year</th><th>Score</th></tr></thead>
+                    <tbody>
+                        <tr><td>10th</td><td>{{ edu.SecondaryBoard }}</td><td>{{ edu.SecondaryBoardyop }}</td><td>{{ edu.SecondaryBoardper }}%</td></tr>
+                        <tr><td>12th</td><td>{{ edu.SSecondaryBoard }}</td><td>{{ edu.SSecondaryBoardyop }}</td><td>{{ edu.SSecondaryBoardper }}%</td></tr>
+                        <tr><td>UG</td><td>{{ edu.GraUni }}</td><td>{{ edu.GraUniyop }}</td><td>{{ edu.GraUnidper }}%</td></tr>
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="p-4 text-center text-muted">No education records provided by candidate.</div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white font-weight-bold">Recent Applications</div>
+            <div class="list-group list-group-flush">
+                {% for app in apps %}
+                <div class="list-group-item">
+                    <div class="d-flex justify-content-between">
+                        <div class="text-primary font-weight-bold">{{ app.JobTitle }}</div>
+                        <span class="small text-muted">{{ app.ApplyDate }}</span>
+                    </div>
+                    <div class="small text-muted">{{ app.CompanyName }} &bull; Status: <strong>{{ app.Status or 'Under Review' }}</strong></div>
+                </div>
+                {% else %}
+                <div class="p-4 text-center text-muted">Candidate hasn't applied to any jobs yet.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

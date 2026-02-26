@@ -1,0 +1,24 @@
+{% extends 'company/base.html' %}
+{% block page_title %}Manage Vacancies{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm"><div class="card-body">
+<table class="table table-hover align-middle mb-0">
+  <thead class="bg-light"><tr><th>Job Title</th><th>Location</th><th>Salary</th><th>Openings</th><th>Actions</th></tr></thead>
+  <tbody>
+    {% for row in vacs %}
+    <tr>
+    <td><div class="font-weight-bold">{{ row.JobTitle }}</div><small class="text-muted">Last Date: {{ row.LastDate }}</small></td>
+    <td>{{ row.JobLocation }}</td>
+    <td>{{ row.MonthlySalary }}</td>
+    <td>{{ row.NoofOpenings }}</td>
+    <td>
+      <a href="{{ url_for('company_edit_vacancy', vac_id=row.ID) }}" class="btn btn-sm btn-light text-primary"><i class="fas fa-edit"></i></a>
+      <a href="{{ url_for('company_delete_vacancy', vac_id=row.ID) }}" class="btn btn-sm btn-light text-danger" onclick="return confirm('Delete this job?');"><i class="fas fa-trash"></i></a>
+    </td></tr>
+    {% else %}
+    <tr><td colspan="100%" class="text-center py-4 text-muted">No records found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div></div>
+{% endblock %}

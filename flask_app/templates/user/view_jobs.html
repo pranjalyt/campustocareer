@@ -1,0 +1,31 @@
+{% extends 'user/base.html' %}
+{% block page_title %}Browse Jobs{% endblock %}
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <form method="get" class="d-flex" style="gap:10px;">
+            <input type="text" name="keyword" class="form-control" placeholder="Search title..." value="{{ keyword }}">
+            <input type="text" name="location" class="form-control" placeholder="Location..." value="{{ location }}">
+            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</div>
+<div class="row">
+  {% for job in jobs %}
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card border-0 shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="font-weight-bold mb-1">{{ job.JobTitle }}</h5>
+        <div class="text-primary small mb-3"><i class="fas fa-building mr-1"></i>{{ job.CompanyName }}</div>
+        <p class="small text-muted mb-1"><i class="fas fa-map-marker-alt" style="width:20px;"></i>{{ job.JobLocation }}</p>
+        <p class="small text-muted mb-1"><i class="fas fa-rupee-sign" style="width:20px;"></i>{{ job.MonthlySalary }}/Mo</p>
+        <p class="small text-muted mb-3"><i class="fas fa-users" style="width:20px;"></i>{{ job.NoofOpenings }} Openings</p>
+        <a href="{{ url_for('user_apply_job', job_id=job.ID) }}" class="btn btn-sm btn-outline-primary w-100">View & Apply</a>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12"><div class="alert alert-info">No jobs found matching your criteria.</div></div>
+  {% endfor %}
+</div>
+{% endblock %}

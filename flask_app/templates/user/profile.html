@@ -1,0 +1,44 @@
+{% extends 'user/base.html' %}
+{% block page_title %}My Profile{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm" style="max-width:800px;">
+  <div class="card-body p-4">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="font-weight-bold small">Full Name</label>
+                <input type="text" name="fullname" class="form-control" value="{{ user.FullName }}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="font-weight-bold small">Mobile Number</label>
+                <input type="number" name="mobile" class="form-control" value="{{ user.MobileNumber }}" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="font-weight-bold small">Gender</label>
+                <select name="gender" class="form-control" required>
+                    <option value="Male" {% if user.Gender=='Male' %}selected{% endif %}>Male</option>
+                    <option value="Female" {% if user.Gender=='Female' %}selected{% endif %}>Female</option>
+                    <option value="Other" {% if user.Gender=='Other' %}selected{% endif %}>Other</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="font-weight-bold small">Date of Birth</label>
+                <input type="date" name="dob" class="form-control" value="{{ user.DOB }}">
+            </div>
+            <div class="col-12 mb-3">
+                <label class="font-weight-bold small">Address</label>
+                <textarea name="address" class="form-control" rows="3">{{ user.Address }}</textarea>
+            </div>
+            <div class="col-12 mb-4">
+                <label class="font-weight-bold small">Profile Image (Optional)</label>
+                <input type="file" name="image" class="form-control-file border p-2 rounded w-100" accept="image/*">
+                {% if user.Image %}
+                <div class="mt-2"><img src="{{ url_for('static', filename='uploads/' + user.Image) }}" height="60" class="rounded shadow-sm"></div>
+                {% endif %}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary px-4">Update Profile</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

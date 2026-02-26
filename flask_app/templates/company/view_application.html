@@ -1,0 +1,95 @@
+{% extends 'company/base.html' %}
+{% block page_title %}Process Application{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-7">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white font-weight-bold">Candidate Information</div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted">Name</div><div class="col-sm-8 font-weight-bold">{{ app.FullName }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted">Email</div><div class="col-sm-8"><a href="mailto:{{ app.UserEmail }}">{{ app.UserEmail }}</a></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted">Mobile</div><div class="col-sm-8">{{ app.UserMobile }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted">Applied For</div><div class="col-sm-8 text-primary">{{ app.JobTitle }}</div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-4 text-muted">Resume</div>
+                    <div class="col-sm-8">
+                        {% if app.Resume %}
+                        <a href="{{ url_for('static', filename='uploads/' + app.Resume) }}" class="btn btn-sm btn-outline-primary" target="_blank"><i class="fas fa-file-download mr-1"></i> Download Resume</a>
+                        {% else %}
+                        <span class="text-danger">No resume attached</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 text-muted">Cover Letter</div>
+                    <div class="col-sm-8 bg-light p-3 rounded" style="white-space:pre-line;">{{ app.Message or 'No message provided.' }}</div>
+                </div>
+            </div>
+        </div>
+        
+        {% if edu %}
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white font-weight-bold">Academic Record</div>
+            <div class="card-body p-0">
+                <table class="table mb-0 table-sm text-center">
+                    <thead class="bg-light"><tr><th>Level</th><th>Board/Uni</th><th>Year</th><th>Score</th></tr></thead>
+                    <tbody>
+                        <tr><td>10th</td><td>{{ edu.SecondaryBoard }}</td><td>{{ edu.SecondaryBoardyop }}</td><td>{{ edu.SecondaryBoardper }}% ({{ edu.SecondaryBoardcgpa }} CGPA)</td></tr>
+                        <tr><td>12th</td><td>{{ edu.SSecondaryBoard }}</td><td>{{ edu.SSecondaryBoardyop }}</td><td>{{ edu.SSecondaryBoardper }}% ({{ edu.SSecondaryBoardcgpa }} CGPA)</td></tr>
+                        <tr><td>UG</td><td>{{ edu.GraUni }}</td><td>{{ edu.GraUniyop }}</td><td>{{ edu.GraUnidper }}% ({{ edu.GraUnicgpa }} CGPA)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-lg-5">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white font-weight-bold">Update Application Status</div>
+            <div class="card-body bg-light">
+                <form method="POST">
+                    <div class="form-group">
+                        <label class="font-weight-bold small">Current Status</label>
+                        <select name="status" class="form-control" required>
+                            <option value="New" {% if not app.Status %}selected{% endif %}>Under Review</option>
+                            <option value="Sorted" {% if app.Status=='Sorted' %}selected{% endif %}>Shortlist (Sorted)</option>
+                            <option value="Selected" {% if app.Status=='Selected' %}selected{% endif %}>Select Candidate</option>
+                            <option value="Rejected" {% if app.Status=='Rejected' %}selected{% endif %}>Reject Candidate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold small">Message to Candidate (Visible to them)</label>
+                        <textarea name="message" class="form-control" rows="3" placeholder="Provide feedback or next steps..."></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-block">Confirm Status Update</button>
+                </form>
+            </div>
+        </div>
+        
+        {% if msgs %}
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white font-weight-bold">Status History</div>
+            <ul class="list-group list-group-flush small">
+                {% for m in msgs %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between font-weight-bold">
+                        <span>{{ m.Status }}</span><span class="text-muted">{{ m.ResponseDate }}</span>
+                    </div>
+                    <div class="mt-1">{{ m.Message }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

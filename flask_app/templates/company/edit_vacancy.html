@@ -1,0 +1,22 @@
+{% extends 'company/base.html' %}
+{% block page_title %}Edit Vacancy{% endblock %}
+{% block content %}
+<div class="card border-0 shadow-sm" style="max-width:800px;">
+  <div class="card-body p-4">
+    <form method="POST" enctype="multipart/form-data">
+        
+    <div class="row">
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Job Title</label><input type="text" name="job_title" value="{{ vac.JobTitle }}" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Openings</label><input type="number" name="openings" value="{{ vac.NoofOpenings }}" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Salary (Monthly)</label><input type="text" name="salary" value="{{ vac.MonthlySalary }}" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Job Location</label><input type="text" name="location" value="{{ vac.JobLocation }}" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Apply Date</label><input type="text" name="apply_date" value="{{ vac.ApplyDate }}" class="form-control" required></div>
+        <div class="col-md-6 mb-3"><label class="small font-weight-bold">Last Date</label><input type="text" name="last_date" value="{{ vac.LastDate }}" class="form-control" required></div>
+        <div class="col-12 mb-3"><label class="small font-weight-bold">Job Description</label><textarea name="description" rows="5" class="form-control" required>{{ vac.JobDescriptions }}</textarea></div>
+    </div>
+
+        <button type="submit" class="btn btn-primary mt-3 px-4">Save Changes</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

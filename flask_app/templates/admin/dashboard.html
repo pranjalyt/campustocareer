@@ -1,0 +1,32 @@
+{% extends 'admin/base.html' %}
+{% block page_title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon bg-primary text-white"><i class="fas fa-building"></i></div>
+      <div class="label">Companies</div><div class="value">{{ companies }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon bg-info text-white"><i class="fas fa-users"></i></div>
+      <div class="label">Candidates</div><div class="value">{{ users }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon bg-success text-white"><i class="fas fa-briefcase"></i></div>
+      <div class="label">Vacancies</div><div class="value">{{ vacancies }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon bg-warning text-white"><i class="fas fa-inbox"></i></div>
+      <div class="label">Total Applications</div><div class="value">{{ total_apps }}</div>
+  </div></div>
+</div>
+<div class="row mt-2">
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon text-white" style="background:#f59e0b"><i class="fas fa-bell"></i></div>
+      <div class="label">New Applications</div><div class="value">{{ new_apps }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon text-white" style="background:#8b5cf6"><i class="fas fa-filter"></i></div>
+      <div class="label">Sort Listed</div><div class="value">{{ sorted_apps }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon text-white" style="background:#10b981"><i class="fas fa-check-circle"></i></div>
+      <div class="label">Selected</div><div class="value">{{ selected }}</div>
+  </div></div>
+  <div class="col-md-3 mb-4"><div class="stat-card bg-white"><div class="icon text-white" style="background:#ef4444"><i class="fas fa-times-circle"></i></div>
+      <div class="label">Rejected</div><div class="value">{{ rejected }}</div>
+  </div></div>
+</div>
+{% endblock %}

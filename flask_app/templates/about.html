@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}About Us | Campus to Career{% endblock %}
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2 class="font-weight-bold mb-3">About Us</h2>
+                <div class="bg-primary rounded mx-auto mb-4" style="width:60px;height:4px;"></div>
+                {% if page %}
+                <p class="lead text-muted">{{ page.PageDescription }}</p>
+                {% else %}
+                <p class="lead text-muted">We connect talented students with great career opportunities through campus
+                    recruitment.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4 text-center mb-4">
+                <div class="p-4 border rounded shadow-sm h-100">
+                    <i class="fas fa-target fa-3x text-primary mb-3"></i>
+                    <h5>Our Mission</h5>
+                    <p class="text-muted small">To bridge the gap between talented students and top recruiters through
+                        efficient campus placement.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="p-4 border rounded shadow-sm h-100">
+                    <i class="fas fa-eye fa-3x text-success mb-3"></i>
+                    <h5>Our Vision</h5>
+                    <p class="text-muted small">To be the premier platform for campus recruitment across India,
+                        empowering every student's career journey.</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div class="p-4 border rounded shadow-sm h-100">
+                    <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+                    <h5>Our Values</h5>
+                    <p class="text-muted small">Integrity, transparency, and student-first approach in everything we do.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
