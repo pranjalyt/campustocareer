@@ -20,7 +20,10 @@ def inject_now():
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), 'static', 'uploads')
 ALLOWED_IMG  = {'png', 'jpg', 'jpeg', 'gif'}
 ALLOWED_DOC  = {'pdf', 'doc', 'docx'}
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+try:
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+except Exception:
+    pass
 
 # ─────────────── helpers ───────────────
 def md5(text):
